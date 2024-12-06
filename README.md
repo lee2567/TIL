@@ -1,5 +1,3 @@
-test
-
 # TIL
 today i learned
 
