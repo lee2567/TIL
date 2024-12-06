@@ -1,0 +1,265 @@
+# 정렬
+import java.util.*;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		
+		int N = sc.nextInt();
+		
+		List<int[]> islands = new ArrayList(); // sort 함수를 사용할 수 있음.
+		// collections.sort();
+		
+		for (int i = 0 ; i < N ; i++){
+			int x = sc.nextInt();
+			int y = sc.nextInt();
+			islands.add(new int[]{x, y, i});
+		}
+		
+		// 읽으면서 코딩 하시는 분들 버릇되면 안되요
+		// Java 공기업 코테는 모여서 봐요.
+		
+		// 어떤 우선 순위를 기준으로 정렬을 하면 됩니다.
+		// a = {x, y, i}
+		islands.sort( // 이 안에 우선순위를 정의해준다.
+			(a, b) -> {
+				if (a[0] != b[0]){
+					return Integer.compare(a[0], b[0]);
+				}else{
+					return Integer.compare(a[1], b[1]);
+				}
+			}
+		);
+		int[] res = new int[N];
+		
+		
+		// 원래의 인덱스
+		
+		for (int i = 0; i < N; i++){
+			res[islands.get(i)[2]] = N - i - 1;
+			// 배열적 테크닉셕,, 문제를 풀기 위한 어떤,, 야매 코딩?
+			/*
+			res 배열을 길이가 N만큼 만들었어요.
+			모든 값이 초기화 되어 있겠죠?
+			
+			res = {0 ,0, 0, .....}
+			이 인덱스에 접근할 수 있어요.
+			
+			-> islands.get(i)[2] {x, ,y, i} i는 원래 인덱스야..
+			res[islands.get(i)[2]] == 원래의 섬의 위치에다가, 그 섬을 본거지로
+			삼았을때, 침략할 수 있는 섬의 개수를 관리하다.
+			
+			만약에 3이야... res[3]은 원래 3번째 섬이 침략할 수 있는 섬의 개수가 된다.
+			침략 가능한 섬의 개수는 
+			 N(섬의 전체 개수) - i(정렬된 이후의 현재의 인덱스) - 1  
+			 이게 침략 가능한 섬의 개수
+			*/
+		}
+		
+		for (int i = 0; i < N ; i++){
+			System.out.println(res[i]);
+		}
+		sc.close();
+	}
+}
+
+#완전탐색
+/*
+		정렬 문제는 아닙니다.
+		
+		정렬 문제가 아닌 이유는요. 완전 탐색을 하게 되면, 정렬을 할 필요가 없습니다.
+		완전 탐색은 탐색 과정 중에서 가능한 모든 경우를 찾게 됩니다.
+		
+		정렬을 하는 이유는 보통 이 찾는 횟수를 줄이기 위한 전략이 됩니다.
+		*/
+		
+		// 모든 좌표를 확인
+		int ans = INF;
+		
+		for (int r = 1; r <= N; r++){
+			for (int c = 1; r <= M; c++){
+				boolean isValid = true;
+				
+				for (int i =  0 ; i < K ; i++){
+					// 해당 좌표가 조건에 맞는 지 확인(판다가 없는 곳)
+					if (r == R[i] && c == C[i]){
+						isValid = false;
+						break;
+					}
+				}
+			}
+			if (!isValid) continue;
+			// 조건에 맞으면 불만족도 점수를 계산하기(모든 판다와의 거리 계산 한 후 모두 합함)
+			// 종료된 후 불만족도 점수 최저인 지점을 찾기.
+			ans = Math.min(ans, solve(r, c));
+		}
+		완전 탐색 유형에서 크게 시작할때 2가지가 있음.
+	
+	1. 탐색의 시작점을 주는 문제.
+		탐색의 시작점을 주는 문제는 해당 위치 부터 시작을 해야함.
+		이 경우도 시작점 찾아야 하는 경우가 있지만, 조건에 따라 찾는 게 아니라 정확히 찾을 수 있다.
+		
+	2. 시작점을 주지 않으면 스스로 시작점을 찾아야 한다.
+		조건에 맞춰 시작점을 찾으면 된다.
+	
+	
+	3. 경우의 수를 찾느냐? 최대/최소를 찾느냐
+		경우의 수를 찾는 문제는 고려할 건덕지 없이 그냥 경우의 수를 count + 1
+		
+		최대/최소 찾는 경우에는 함수를 선언하고, Math.min/ Math.max 같은 걸 사용해서 풀이하는 게 좋다.
+		중요한 Point 최대 경우에 int ans의 초기값을 아주 작은 수로지정
+		반대로 최소를 차즌 경우 int abns를 아주 큰값을 지정
+	
+	4. 들어갈 칸이 없는 경우도 있다.
+		if (ans == INF){
+			print(-1);
+		} else{
+			print(ans); 
+		}
+		 // 모든 좌표를 확인
+		final int INF = (int) 1e10; // 아주 큰 수 만들기
+		int ans = INF;
+
+#필기
+import java.utill.*;
+
+
+
+public class Main {
+	public static void main(String[] args){
+	Scanner sc = new Scanner(System.in);
+
+	//2차원 배열을 만들 필요가 잇을까?
+
+	//거리를 계산하는 함수가 필요하다 거리를 구할 때, 조금 더
+	효율적으로 계산할 필요가 있다
+
+
+
+
+	}
+}
+
+//완전 탐색
+완전 탐색은 탐색 과정 중에서 가능한 모든 경우를 찾게 됩니다
+정렬을 하는 이유는 보통 이 찾는 횟수를 줄이기 위한 전략이 됩니다
+
+
+
+import java.util.*;
+
+public class Main {
+		
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		
+		int INF = (int) 1e9;
+		
+		
+		int N = sc.nextInt();
+		int M = sc.nextInt();
+		int K = sc.nextInt();
+		
+		int[] R = new int[K+1];
+		int[] C = new int[K+1];
+		
+		
+		// 2차원 배열을 만들지 않고, 판다가 위치한 좌표만 확인하기.
+		for (int i  = 0; i < K ; i++){
+			R[i] = sc.nextInt();
+			C[i] = sc.nextInt();
+		}
+		/*
+		i = 1일때..
+		(R[i], C[i])는 어떤 값일까..
+		
+		*/
+		// 거리를 계산하는 함수가 필요하다. 거리를 구할 때, 조금 더 효율적으로 계산할 필요가 있다.
+		int solve(int r, int c) {
+			int res = 0;
+			for (int i = 0; i < K; i++) {
+				res += (r - R[i]) * (r - R[i]) + (c - C[i]) * (c - C[i]);
+			}
+			return res;
+		}
+	}
+}
+
+/*
+		정렬 문제는 아닙니다.
+		
+		정렬 문제가 아닌 이유는요. 완전 탐색을 하게 되면, 정렬을 할 필요가 없습니다.
+		완전 탐색은 탐색 과정 중에서 가능한 모든 경우를 찾게 됩니다.
+		
+		정렬을 하는 이유는 보통 이 찾는 횟수를 줄이기 위한 전략이 됩니다.
+		*/
+		
+		// 모든 좌표를 확인
+		final int INF = (int)1e10 //아주 큰 수 만들기
+		int ans = INF;
+		
+		for (int r = 1; r <= N; r++){
+			for (int c = 1; r <= M; c++){
+				boolean isValid = true;
+				
+				for (int i =  0 ; i < K ; i++){
+					// 해당 좌표가 조건에 맞는 지 확인(판다가 없는 곳)
+					if (r == R[i] && c == C[i]){
+						isValid = false;
+						break;
+					}
+				}
+			}
+			if (!isValid) continue;
+			// 조건에 맞으면 불만족도 점수를 계산하기(모든 판다와의 거리 계산 한 후 모두 합함)
+			// 종료된 후 불만족도 점수 최저인 지점을 찾기.
+			ans = Math.min(ans, solve(r, c));
+		}
+//
+완전 탐색 유형에서 크게 시작할 때 2가지가 있음
+1.탐색의 시작점을 주는 문제.
+	탐색의 시작점을 주는 문제는 해당 위치부터 시작을 해야함
+	이 경우도 시작점 찾아야 하는 경우가 있지만,
+	조건에 따라 찾는 게 아니라 정확히 찾을 수 있다
+2.시작점을 주지 않으면 스스로 시작점을 찾아야 한다.
+	조건에 맞춰 시작점을 찾으면 된다
+3.경우의 수를 찾느냐? 최대/최소를 찾느냐
+	경우의 수를 찾는 문제는 고려할 건덕지 없이 그냥
+	경우의 수를 count+1
+
+	최대/최소 찾는 경우에는 함수를 선언하고, Math.min/
+	Math.max같은 걸 사용해서 풀이하는 게 좋다
+	중요한 Point 최대 경우에는 int.ans의 초기값을 아주 작은 수로
+	지정
+	반대로 최소를 찾는 경우 int.abns를 아주 큰값을 지정
+4.들어갈 칸이 없는 경우도 있다
+	if(ans==INF){
+	print(-1);
+	}else{
+	print(ans)
+	}
+
+
+
+
+//모든 죄표 탐색
+int ans = INF;
+
+for (int r=1; r<=N; r++){
+	for(int c=1; r<= M; c++){
+	boolean isValid= true;
+
+	for (int i = 0; i < K; i++){
+		if(r == R[i] && c == c[i])
+		isValid = false;
+		break;
+	}
+	}
+}
+if (!isValid) continue;
+//조건에 맞으면
+
+ans = Math.min(ans, solve(r,c))
+}
+
+완전 탐색(3) : 과제
