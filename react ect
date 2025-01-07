@@ -1,0 +1,83 @@
+25/01/07
+1.Next.js
+2.Redux
+3.docker
+4.React19
+
+Next js 13
+선행 학습
+- Next.js란
+- Next.js 기본 파일 구조
+- Pre-rendering
+- Data Fetching
+- TypeScript란?
+- Next.js와 TypeScript 만들 앱 소개
+- 메인 페이지 UI 만들기 (마크다운 파일 생성)
+- 마크다운 파일을 데이터로 추출하기
+- TypeScript Type
+- Typescript 추가 제공 타입
+- Type annotation, Type inference
+- Type assertion
+- getStaticProps를 이용한 포스트 리스트 나열
+- 포스트 자세히 보기 페이지로 이동(file system기반의 라우팅)
+- 포스트 데이터를 가져와서 보여주기(remark)
+- 블로그앱 스타일링
+
+
+Server Action
+
+Parallel Routes
+
+Partial PreRendering
+
+Image Component
+
+Nextjs15 :Cathing
+
+react18: Automatic batching
+
+Suspense on the server
+
+react18: Transition
+
+
+-리덕스에 대해서 : 상태관리 라이브러리
+-Store로 상태관리
+-리덕스 데이터 Flow 알아보기
+-리덕스 Store API 살펴보기 : 카운터 앱 구현
+-Sub Reducer : reducer를 합치는 법
+-리액트 컴포넌트들에서 리덕스 스토어에 있는 상태를 사용할 수 있게 해주기 
+: <Provider store={store}></Provider>
+-store에 있는 State를 사용하기
+:import {useSelector, useDispatch} from ‘react-redux’ ; //react-redux<-라이브러리
+-로깅기능 생성하기
+-비동기 작업을 처리하는 방법 알아보기
+-Redux Thunk : 왜 사용하는지 알아봤지만 난 모르겟다
+-Redux Toolkit : 모범사례, 공식 권장 접근 방식
+-Redux Toolkit APIs : 집중 실패
+
+
+-챕터설명 : docker를 배우는 챕터 (선택사항)
+-도커를 사용하는 이유 : 설치 과정이 간단해진다
+-도커란 무엇인가?
+-윈도우에서 도커 설치하기
+-맥에서 도커 설치하기
+-도커를 사용할 때의 흐름 감잡기
+-도커 이미지 생성하는 순서
+-도커 파일 만들기
+-도커파일로 도커 이미지 만들기
+-리액트를 위한 도커 파일 작성하기
+-생성한 이미지로 어플리케이션 실행 시 접근이 안 되는 이유 (포트 맵핑)
+-EC2에서 도커 설치 및 실행 : in AWS
+
+
+-React 19 새로운 것들
+-React Compiler :소스코드를 Optimized
+-use() : use() Hook => 비동기 요청으로 hook을 가져오는 것
+-Actions : 함수를 Dom elements(like form)에 전달을 할 수 있게 하는 것
+-useFormStatus: 폼의 상태를 추적
+-useActionState: useFormStatus 업데이트된 간소화된 코드 작성
+-useOptimistic: 에러시 원상복구 인터페이스가 즉각적으로 반응하는 것처럼 보이게 함
+-Meta tags: =react-helmet라이브러리와 유사 (호이스팅)
+-React Compiler (자세히) : React memo, useCallback, useMemo 흡수 (컴파일러 사용할 수 있게 체크 라이브러리 사용하는 법)
+-React Server Component : Next js 흡수 
